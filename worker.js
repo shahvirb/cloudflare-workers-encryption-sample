@@ -117,9 +117,11 @@ export default {
   },
 };
 
+
 function toHexString(byteArray) {
   return [...byteArray].map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
+
 
 function fromHexString(hexString) {
   return new Uint8Array(hexString.match(/[\da-f]{2}/gi).map(byte => parseInt(byte, 16)));
@@ -157,6 +159,7 @@ async function encryptText(text) {
   return { encryptedText, key, iv };
 }
 
+
 async function decryptText(encryptedText, key, iv) {
   const encryptedBuffer = fromHexString(encryptedText);
   const decrypted = await crypto.subtle.decrypt(
@@ -179,6 +182,7 @@ async function storeKeyInKV(key, kvNamespace, keyName) {
   const encodedKey = btoa(String.fromCharCode(...new Uint8Array(exportedKey)));
   await kvNamespace.put(keyName, encodedKey);
 }
+
 
 async function getKeyFromKV(kvNamespace, keyName) {
   const encodedKey = await kvNamespace.get(keyName);
