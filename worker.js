@@ -6,7 +6,7 @@ export default {
         try {
           // Encrypt and decrypt a test string
           // We should see on screen the plain text string after the e2e encryption/decryption.
-          const text = 'If you can read this string then encryption/decryption must work. abcdef-123456';
+          const text = 'does this work? abcdef-123890';
           const keyName = "testEndpointKey";
 
           const { encryptedText, key, iv } = await encryptText(text);
